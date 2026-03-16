@@ -40,7 +40,7 @@ class Repuesto:
 
     #  método para imprimir
     def __str__(self):
-        return f"Repuesto: {self.nombre} | Proveedor: {self.proveedor} | Stock: {self.__cantidad} | Precio: {self.precio} cr"
+        return f"Repuesto: {self.nombre} | Proveedor: {self.proveedor} | Stock: {self.__cantidad} | Precio: {self.precio}"
     
 # HERENCIA MÚLTIPLE
 
@@ -164,4 +164,45 @@ class Operario(Usuario):
         # cambiar el stock privado con set_cantidad
         repuesto.set_cantidad(nueva_cantidad)
         print(f"Operario {self.nombre} ha actualizado el stock de {repuesto.nombre} a {nueva_cantidad}.")
-        
+
+
+
+
+
+# PRUEBA DEL CÓDIGO
+
+if __name__ == "__main__":
+    print("SISTEMA MIIMPERIO\n")
+
+    #  Creamos un almacén
+    almacen_endor = Almacen("Almacén Principal", "Almacen de Endor")
+
+    #  Creamos los repuestos 
+    motor = Repuesto("Motor Impulsor", "Herramientas", 10, 50000.0)
+    canon = Repuesto("Cañón Láser", "Armamento", 50, 2000.0)
+
+    # Creamos a los actores (nombre e id)
+    operario1 = Operario("Aquiles", "001")
+    comandante = Comandante("Erwin", "34")
+
+    # El operario añade las piezas al almacén
+    print("INVENTARIO")
+    operario1.añadir_repuesto_catalogo(almacen_endor, motor)
+    operario1.añadir_repuesto_catalogo(almacen_endor, canon)
+    print(almacen_endor) # resumen del almacén
+
+    # Creamos una Nave 
+    print("\n FLOTA")
+    nave = CazaEstelar("Nave Comandante", "VX1", 55674, dotacion=1)
+    print(f"Nave lista: {nave.nombre} | ID Combate: {nave.id_combate} | Clave: {nave.clave_transmision}")
+
+    # El Comandante hace la compra 
+    print("\n REPUESTOS ")
+    comandante.consultar_repuesto(almacen_endor, "Motor Impulsor")
+    
+    # Intenta comprar 2 motores
+    comandante.adquirir_repuesto(almacen_endor, "Motor Impulsor", 2)
+
+    # Verificamos que el stock privado se ha restado correctamente
+    print("\nSTOCK FINAL ")
+    print(f"Stock restante del Motor: {motor.get_cantidad()} unidades.")
