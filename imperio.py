@@ -88,7 +88,6 @@ class CazaEstelar(Nave, UnidadCombateImperial):
         
         self.dotacion = dotacion
 
-
 # CLASE ALMACÉN
 # Creamos la clase almacén para añadir repuestos a este y buscar entre la lista de repuestos
 
