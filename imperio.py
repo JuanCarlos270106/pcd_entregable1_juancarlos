@@ -206,3 +206,20 @@ if __name__ == "__main__":
     # Verificamos que el stock privado se ha restado correctamente
     print("\nSTOCK FINAL ")
     print(f"Stock restante del Motor: {motor.get_cantidad()} unidades.")
+
+
+# PRUEBA DE EXCEPCIONES
+
+    print("\n PRUEBA DE ERRORES")
+    try:
+        # operario pone un stock negativo
+        print("Poner stock negativo")
+        operario1.actualizar_stock(motor, -5)
+    except ValueError as error:
+        
+        print(f"Excepción capturada: {error}")
+
+    except Exception as e:
+        
+        print(f"erro: {e}")
+        
